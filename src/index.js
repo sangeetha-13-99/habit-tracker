@@ -6,15 +6,18 @@ import reportWebVitals from './reportWebVitals';
 import { HabitContextProvider } from './store/habit-context';
 
 import {ChakraProvider}  from "@chakra-ui/react"
+import { ModalContextProvider } from './store/modal-context';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ChakraProvider>
+      <ModalContextProvider>
       <HabitContextProvider>
         <App />
       </HabitContextProvider>
+      </ModalContextProvider>
     </ChakraProvider>
   </React.StrictMode>
 );

@@ -8,7 +8,8 @@ import { Form } from '../components/Form';
 export const ListingPage = () => {
     const {habitData:{habits}} = useHabitContext(); 
     const {dispatchModal,ModalData} =useModalContext();
-    const createHabitHandler=(e)=>{
+    console.log(ModalData.isOpen,"modla opne")
+    const createHabitHandler=()=>{
         console.log("openmodal");
         dispatchModal({type:'OPENMODAL',payload:{}});
     }
@@ -17,11 +18,11 @@ export const ListingPage = () => {
     <div>
         {ModalData.isOpen && <Form/>}
        <Link to="/archive">
-            <button className='archive-button' > Go to Archive </button>
+            <button className='navigate-button' > Go to Archive </button>
        </Link>
        <div className='habit-container'>
-            <button onClick={(e)=>{createHabitHandler(e)}} className='habit-create-btn'>Add new Habit</button>
-            <Cards habits={habits}/>
+            <button onClick={createHabitHandler} className='habit-create-btn'>Add new Habit</button>
+            <Cards habits={habits} isArchived={false}/>
        </div>
     </div>
   )

@@ -8,7 +8,7 @@ const ModalContext=createContext({
 
 export const ModalContextProvider=({children})=>{
 
-    const [ModalData,dispatchModal]=useReducer(modalReducer,intialModalData)
+    const [ModalData,dispatchModal]=useReducer(modalReducer,intialModalData);
     return (
         <ModalContext.Provider value={{ModalData,dispatchModal}}>
             {children}

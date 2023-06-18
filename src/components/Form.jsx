@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHabitContext } from '../store/habit-context';
 import image1 from "../images/meditate.jpg"
 import image2 from "../images/reading.jpg"
@@ -18,6 +18,10 @@ export const Form = () => {
         timeOfDay:'Any Time',
         startDate:'Today'
     });
+
+    useEffect(()=>{
+        setFormData(ModalData.modalData);
+    },[ModalData.modalData]);
 
     const titleChangeHandler=(e)=>{
         setFormData(prev=>({...prev,title:e.target.value}));
@@ -40,57 +44,60 @@ export const Form = () => {
     const saveDataHandler=(e)=>{
         if(ModalData.modalData._id){
             const image=formData.category==="meditation"?image1:image2;
-            dispatchHabit({type:"EDITHABIT",payload:{...formData,image:image}})
+            dispatchHabit({type:"EDITHABIT",payload:{habit:{...formData,_id:ModalData.modalData._id,image:image}}});
         }
         else{
             const id=uuid();
             const image=formData.category==="meditation"?image1:image2;
-            dispatchHabit({type:"ADDHABIT",payload:{...formData,_id:id,image:image}})
+            console.log('aving new',{...formData,_id:id,image:image})
+            dispatchHabit({type:"ADDHABIT",payload:{habit:{...formData,_id:id,image:image}}});
         }
         dispatchModal({type:'CLOSEMODAL'});
     }
 
   return (
     <Modal>
-        <form className='form-div'>
-            <label htmlFor='title'>HAbit name</label>
-            <input id="title" type="text" onChange={(e)=>{titleChangeHandler(e)}} value={FormData.title}/>
+        <form className='form-outer-div'>
+            <div className='form-field-full'>
+                <label htmlFor='title'>Habit Name</label>
+                <input id="title" type="text" onChange={(e)=>{titleChangeHandler(e)}} value={formData.title}/>
+            </div>
+            <div  className='form-field-full'>
+                <label>Category</label>
+                <select onChange={(e)=>{categoryChangeHandler(e)}} value={formData.category}>
+                    <option value="meditation">MEDITATION</option>
+                    <option value="reading">READING</option>
+                </select>
+            </div>
             <div className='form-div'>
-                <div>
-                    <label>Category</label>
-                    <select onChange={(e)=>{categoryChangeHandler(e)}}>
-                        <option value="meditation">MEDITATION</option>
-                        <option value="reading">READING</option>
-                    </select>
-                </div>
-                <div>
+                <div  className='form-field-half'>
                     <label>Repeat</label>
-                    <select onChange={(e)=>repeatChangeHandler(e)}>
+                    <select onChange={(e)=>repeatChangeHandler(e)}  value={formData.repeat}>
                         <option value="daily">DAILY</option>
                         <option value="weekly">WEEKLY</option>
                         <option value="monthly">MONTHLY</option>
                     </select>
                 </div>
-                <div>
-                    <label>goal</label>
-                    <select onChange={(e)=>{goalChangeHandler(e)}}>
+                <div  className='form-field-half'>
+                    <label>Goal</label>
+                    <select onChange={(e)=>{goalChangeHandler(e)}}  value={formData.category}>
                         <option value="once">ONCE ADAY</option>
                         <option value="twice">TWICE A DAY</option>
                         <option value="thrice">THRICE A ADY</option>
                     </select>
                 </div>
-                <div>
-                    <label>Time of the Day</label>
-                    <select onChange={(e)=>{timeChangeHandler(e)}}>
+                <div  className='form-field-half'>
+                    <label>Time Of The Day</label>
+                    <select onChange={(e)=>{timeChangeHandler(e)}}  value={formData.timeOfDay}>
                         <option value="anyTime">ANYTIME</option>
                         <option value="morning">MORNING</option>
                         <option value="afternoon">AFTERNOON</option>
                         <option value="evening">EVENing</option>
                     </select>
                 </div>
-                <div>
-                    <label>Repeat</label>
-                    <select onChange={(e)=>{startChangeHandler(e)}}>
+                <div  className='form-field-half'>
+                    <label>Start Date</label>
+                    <select onChange={(e)=>{startChangeHandler(e)}}  value={formData.startDate}>
                         <option value="today">TODAY</option>
                         <option value="tomorrow">TOMORROW</option>
                         <option value="other">OTHER</option>

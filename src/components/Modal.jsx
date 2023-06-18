@@ -15,7 +15,7 @@ const BackDropModal=({onClick})=>{
 const ModalContent=({children,onClick})=>{
     return (
         <div className='modal'>
-            <button className='button-close' onClick={onClick}><CloseIcon w="8" h="8"/></button>
+            <button className='button-close' onClick={onClick}><CloseIcon w="4" h="4" color="white"/></button>
             {children}
         </div>
     )

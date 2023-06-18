@@ -29,12 +29,12 @@ export const habitReducer=(state,action)=>{
             }
         }
         case 'ARCHIVEHABIT':{
-            const habitsData=state.habits.filter(habit=>habit._id!==action.payload.id);
+            const habitsData=state.habits.filter(habit=>habit._id!==action.payload.habit._id);
             const archivedHabits=[...state.archive,action.payload.habit];
             return {...state,habits:habitsData,archive:archivedHabits}
         }
         case 'UNARCHIVEHABIT':{
-            const archivedHabitsData=state.archive.filter(habit=>habit._id!==action.payload.id);
+            const archivedHabitsData=state.archive.filter(habit=>habit._id!==action.payload.habit._id);
             const habitsData=[...state.habits,action.payload.habit];
             return {...state,habits:habitsData,archive:archivedHabitsData};
         }

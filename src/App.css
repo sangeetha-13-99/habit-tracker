@@ -1,3 +1,152 @@
 .App {
   text-align: center;
 }
+
+.cards{
+  display:flex;
+}
+
+.habit-buttons,.habit-card,.habit-details,.form-div,.form-outer-div{
+  display:flex;
+  justify-content:flex-start;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.habit-card,.habit-create-btn{
+  position:relative;
+  width:300px;
+  height:200px;
+  margin:10px;
+  border-radius:10px;
+  box-shadow:-1px 1px 5px gray;
+  padding:10px;
+}
+
+.habit-create-btn{
+  width:300px;
+  height:100px;
+  font-size:1.5rem;
+  font-weight:bold;
+  font-family:monospace;
+  color:gray;
+}
+.habit-card>img{
+  position:absolute;
+  right:0;
+  width:60%;
+  height:60%;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.habit-details{
+  align-self:start;
+  position:absolute;
+  top:20px;
+  width:100%;
+  height:100%;
+  z-index:1;
+}
+.habit-card::after{
+  content:'';
+  opacity:0.3;
+  background:linear-gradient(to right,white,purple);
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  width:100%;
+  height:100%;
+  position:absolute;
+  border-radius:10px;
+}
+
+.habit-title{
+  font-size:2rem;
+  color:black;
+  align-self:start;
+  font-weight:bold;
+  font-family:cursive;
+}
+
+.habit-buttons{
+  width:100%;
+  justify-content:space-around;
+}
+
+.habit-buttons>button:last-child{
+  background:black;
+  color:white;
+  padding:0.2rem 1rem;
+  border-radius:10px;
+  font-family:cursive;
+}
+
+.backdrop-modal{
+  position:fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  width:100vw;
+  height:100vh;
+  backdrop-filter:blur(2px);
+  z-index:100;
+}
+
+.modal{
+  position:fixed;
+  z-index:101;
+  width:40%;
+  left:50%;
+  top:40%;
+  background:white;
+  transform:translate(-50%,-50%);
+  border-radius:10px;
+  box-shadow:-1px 1px 5px gray;
+  padding:10px;
+}
+
+.modal .button-close{
+  border-radius:50%;
+  width:40px;
+  height:40px;
+  background:black;
+  position:absolute;
+  right:0;
+}
+.form-outer-div{
+  display:flex;
+  flex-drection:column;
+  gap:20px;
+  padding-top:40px;
+}
+.form-outer-div label{
+    display:block;
+    font-weight:bold;
+    margin-right:10px;
+}
+.form-outer-div input,.form-outer-div select{
+  border:1px solid black;
+  width:100%;
+}
+.form-field-full{
+  width:100%;
+}
+.form-div{
+  width:100%;
+  row-gap:20px;
+  justify-content:space-between;
+}
+.form-field-half{
+  width:45%;
+}
+
+.form-outer-div button,.navigate-button{
+  background:black;
+  color:white;
+  padding:10px;
+  border-radius:8px;
+  font-family:cursive;
+}
+
